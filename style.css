@@ -1,0 +1,86 @@
+:root{
+    --nav-height: 100px;
+    --color-background: rgb(200, 200, 200);
+    --color-primary: rgb(100, 100, 100);
+    --color-secondary: rgb(60, 60, 60);
+}
+*{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body {
+    background-color: var(--color-background);
+    font-size: medium;
+}
+
+nav {
+    position: fixed;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: calc(var(--nav-height) - 20px);
+    max-height: var(--nav-height);
+    background-color: var(--color-primary);
+    padding: 0px 10px 0px 10px;
+    input[type="checkbox"], input[type="checkbox"] + label{
+        cursor: pointer;
+    }
+    input[type="checkbox"] + label{
+        margin-right: 10px;
+    }
+    h1 {
+        font-size: large;
+    }
+    > div{
+        flex-direction: column;
+        border-left: 5px solid var(--color-secondary);
+        padding-left: 5px;
+    }
+    #perCheckDropdown1, #perCheckDropdown2{
+        display: none;
+        margin: 0 15px 0 10px;
+        height: 18px;
+    }
+    .checkbox-group{
+        display: flex;
+        flex-direction: row;
+        .dropdown{
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            background-color: var(--color-secondary);
+            margin-top: 5px;
+            padding: 5px;
+            gap: 5px;
+            transition: 300ms;
+            transform: translateY(-50px);
+            margin-top: 40px;
+            width: 200px;
+            z-index: -1;
+            opacity: 0;
+            color: white;
+        }
+    }
+}
+.main {
+    margin-top: var(--nav-height);
+}
+.winScreen{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -100;
+    opacity: 0;
+    transition: 500ms;
+}

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[[TAXI]]</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="winScreen" class="winScreen">
+        <div class="winScreenContent">
+            <h1>Vyhrál jsi!</h1>
+            <p>Pošli to někmu dalšímu</p>
+            <button onclick="newRound()">Nové kolo</button>
+            <button onclick="goTo('index')">Do menu</button>
+        </div>
+    </div>
+    <nav>
+        <div>
+            <h1>Čas na jedno kolo</h1>
+            <input type="number" max="180" min="10" placeholder="90s" id="maxTimeInput">
+            <button onclick="maxTimeChange()">save</button>
+        </div>
+        <div>
+            <h1>Témata osob</h1>
+            <div class="checkbox-group">
+                <input type="checkbox" id="perCheck_Realne"> <label for="perCheck_Realne">reálné</label> 
+                <button id="perCheckDropdown1">info</button>
+                <div class="dropdown" id="perCheckDropdown1Content">
+                    <p>realne subkategorie</p>
+                </div>
+                <input type="checkbox" id="perCheck_Fiktivni"> <label for="perCheck_Fiktivni">fiktivní</label> 
+                <button id="perCheckDropdown2">info</button>
+                <div class="dropdown" id="perCheckDropdown2Content">
+                    <p>fiktivni subkategorie</p>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="main">
+        <button onclick="getTaxiData()">Další</button>
+        <button onclick="win()">Uhodnuto</button>
+        <p id="outputPerson">Osoba:</p>
+        <p id="outputLocation">Místo:</p>
+        <p id="outputTimer">zbývá: 0s</p>
+        <button id="timerButton">⏸️</button>
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
