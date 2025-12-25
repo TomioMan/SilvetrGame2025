@@ -6,7 +6,7 @@
         "Ježíšek", 
         "Božena Němcová", 
         "Jan Ámos Komenský", 
-        "Jan žižka",
+        "Jan Žižka",
         "Maddona", 
         "Freddie Mercury", 
         "Andrej Babiš", 
@@ -29,6 +29,17 @@
         "Ewa Farna", 
         "Leoš Mareš", 
         "Michael Jackson", 
+        "Johny Depp", 
+        "Leonardo DiCaprio", 
+        "Brad Pitt", 
+        "Tom Hanks", 
+        "Zdeněk Svěrák", 
+        "Fantomas", 
+        "Louis de Funes", 
+        "Silvester Stallone", 
+        "Arnold Schwarzenegger", 
+        "Scarlett Johansson", 
+        "Angelina Jolie", 
         "Tomáš Baťa"
     ],
     "location": [
@@ -66,4 +77,5 @@
         "Garáž", 
         "Zahradnictví"
     ]
+
 }
