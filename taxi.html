@@ -7,6 +7,12 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <div id="burgerMenu" class="burger_menu">
+        <div>
+            <h1></h1>
+            <button></button>
+        </div>
+    </div>
     <div id="winScreen" class="winScreen">
         <div class="winScreenContent">
             <h1>Vyhrál jsi!</h1>
@@ -16,6 +22,11 @@
         </div>
     </div>
     <nav>
+        <div class="to_home_graphic">
+            <button onclick="goTo('index')">
+                <div></div> <div></div> <div></div>
+            </button>
+        </div>
         <div>
             <h1>Čas na jedno kolo</h1>
             <input type="number" max="180" min="10" placeholder="90s" id="maxTimeInput">

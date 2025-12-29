@@ -3,10 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Poznej Píseň</title>
+    <title>[[POZNEJ PISEN]]</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="winScreen" class="winScreen">
+        <div class="winScreenContent">
+            <h1>Vyhrál jsi!</h1>
+            <p>Pošli to někmu dalšímu</p>
+            <button onclick="newRound()">Nové kolo</button>
+            <button onclick="goTo('index')">Do menu</button>
+        </div>
+    </div>
+    <nav>
+        <div class="to_home_graphic">
+            <button onclick="goTo('index')">
+                <div></div> <div></div> <div></div>
+            </button>
+        </div>
+        <div>
+            <h1>Header 1</h1>
+            <button onclick="">Button</button>
+        </div>
+    </nav>
+    <div class="main">
+        <button onclick="getSongData()">Další</button>
+        <button onclick="win()">Uhodnuto</button>
+        <p id="outputSong">Píseň: </p>
+        <p id="outputArtist">Od: </p>
+    </div>
+    <script src="main.js"></script>
 </body>
 </html>
