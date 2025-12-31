@@ -3,6 +3,25 @@ console.log(pageName);
 
 const main = document.getElementsByClassName("main")[0];
 
+document.addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        const buttonDalsi = document.getElementById("buttonDalsi");
+        buttonDalsi.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+        buttonDalsi.style.boxShadow = "0 0 5px rgb(255, 255, 255)";
+        buttonDalsi.style.textShadow = "0 0 0";
+        buttonDalsi.style.borderRadius = "0px";
+    } 
+});
+document.addEventListener('keyup', (event) => {
+    if (event.code === 'Space') {
+        const buttonDalsi = document.getElementById("buttonDalsi");
+        buttonDalsi.style.backgroundColor = "rgba(255, 255, 255, 0)";
+        buttonDalsi.style.boxShadow = "0 0 5px rgba(255, 255, 255, 0.3)";
+        buttonDalsi.style.borderRadius = "4px";
+        buttonDalsi.style.textShadow = "0 0 5px rgb(255, 255, 255), 0 0 7px rgb(255, 255, 255)";
+    }
+});
+
 if (pageName == "[[TAXI]]") {
     
     function getTaxiData() {
