@@ -15,7 +15,7 @@
     </div>
     <div id="winScreen" class="winScreen">
         <div class="winScreenContent">
-            <h1>Vyhrál jsi!</h1>
+            <h1  id="winText">Vyhrál jsi!</h1>
             <p>Pošli to někmu dalšímu</p>
             <button onclick="newRound()">Nové kolo</button>
             <button onclick="goTo('index')">Do menu</button>
@@ -48,13 +48,15 @@
             </div>
         </div>
     </nav>
+    <div class="backgroud">
+        <img src="images/Gemini_Generated_Image_fgapbvfgapbvfgap.png" alt="">
+    </div>
     <div class="main">
+        <p>Osoba: <br><span id="outputPerson"></span></p>
+        <p>Jede do: <br><span id="outputLocation"></span></p>
         <button onclick="getTaxiData()">Další</button>
         <button onclick="win()">Uhodnuto</button>
-        <p id="outputPerson">Osoba:</p>
-        <p id="outputLocation">Místo:</p>
         <p id="outputTimer">zbývá: 0s</p>
-        <button id="timerButton">⏸️</button>
     </div>
 
     <script src="main.js"></script>

@@ -10,15 +10,9 @@ if (pageName == "[[TAXI]]") {
             const indexPerson = Math.floor(Math.random() * data.person.length);
             const indexLocation = Math.floor(Math.random() * data.location.length);
 
-            document.getElementById("outputPerson").innerText = `Osoba: ${data.person[indexPerson]}`;
-            document.getElementById("outputLocation").innerText = `Místo: ${data.location[indexLocation]}`;
+            document.getElementById("outputPerson").innerText = `${data.person[indexPerson]}`;
+            document.getElementById("outputLocation").innerText = `${data.location[indexLocation]}`;
 
-            timerStop();
-            timerBegin();
-            
-            timerButton.innerText = "⏸️";
-
-            timer = 0;
             outputTimer.innerText = `zbývá: ${maxTime - timer}s`;
         });
     }
@@ -33,9 +27,10 @@ if (pageName == "[[TAXI]]") {
     timerInterval = setInterval(timerIntervalFunction, 1000);
     function timerIntervalFunction() {
         timer++;
+        console.log(timer);
         if (timer >= maxTime) {
-            getTaxiData();
-            timer = 0;
+            timer = maxTime;
+            lose();
         }
         outputTimer.innerText = `zbývá: ${maxTime - timer}s`;
         timerBegin();
@@ -71,17 +66,6 @@ if (pageName == "[[TAXI]]") {
         getTaxiData();
         maxTimeInput.placeholder = `${maxTime}s`;
     }
-
-    const timerButton = document.getElementById("timerButton");
-    timerButton.addEventListener("click", () => {
-        if (timerInterval == null) {
-            timerBegin();
-            timerButton.innerText = "⏸️";
-        } else {
-            timerStop();
-            timerButton.innerText = "▶️";
-        }
-    });
 
     const perCheck_Realne = document.getElementById("perCheck_Realne");
     const perCheckDropdown1 = document.getElementById("perCheckDropdown1");
@@ -137,19 +121,34 @@ if (pageName == "[[TAXI]]") {
     });
 
     const winScreen = document.getElementById("winScreen");
+    const winText = document.getElementById("winText");
     function win() {
         winScreen.style.opacity = "1";
         winScreen.style.zIndex = "100";
         timerStop();
+        winText.innerText = 'Vyhrál jsi!';
     }
     function newRound() {
         winScreen.style.opacity = "0";
         winScreen.style.zIndex = "-100";
+        timer = 0;
         getTaxiData();
+    }
+    function lose() {
+        winScreen.style.opacity = "1";
+        winScreen.style.zIndex = "100";
+        timerStop();
+        winText.innerText = 'Čas vypršel!';
     }
 
     document.addEventListener('keydown', (event) => {
-        if (event.code === 'Space') {
+        
+        if (event.code === 'Space') {/*
+            if (timerInterval == null) {
+                timerBegin();
+            } else {
+                timerStop();
+            }*/
             getTaxiData();
         }
     });
@@ -158,16 +157,42 @@ if (pageName == "[[TAXI]]") {
 
 
 else if (pageName == "[[POZNEJ PISEN]]") {
+
+    let checkArray = [];
+    createCheckArray();
+
+    function createCheckArray() {
+        fetch(`song.json`)
+        .then(Response => Response.json())
+        .then(data => {
+            checkArray = new Array(data.song.length).fill(false);
+        });
+    }
+
     function getSongData() {
         fetch(`song.json`)
         .then(Response => Response.json())
         .then(data => {
-            const indexSong = Math.floor(Math.random() * data.song.length);
 
-            document.getElementById("outputSong").innerText = `Píseň: ${data.song[indexSong].title}`;
-            document.getElementById("outputArtist").innerText = `Od: ${data.song[indexSong].artist}`;
+            let going = true;
+            let indexSong = 0;
 
-            console.log(data)
+            if (checkArray.every(element => element == true)) {
+                checkArray = new Array(data.song.length).fill(false);
+            }
+
+            while (going) {
+                indexSong = Math.floor(Math.random() * data.song.length);
+                if (checkArray[indexSong] == false) {
+                    checkArray[indexSong] = true;
+                    going = false;
+                    break;
+                }
+            }
+
+            document.getElementById("outputSong").innerText = `${data.song[indexSong].title}`;
+            document.getElementById("outputArtist").innerText = `${data.song[indexSong].artist}`;
+
         });
     }
 
@@ -177,7 +202,6 @@ else if (pageName == "[[POZNEJ PISEN]]") {
     function win() {
         winScreen.style.opacity = "1";
         winScreen.style.zIndex = "100";
-        timerStop();
     }
     function newRound() {
         winScreen.style.opacity = "0";
@@ -193,13 +217,41 @@ else if (pageName == "[[POZNEJ PISEN]]") {
 }
 
 else if (pageName == "[[MISTRI ZVUKU]]") {
+
+    let checkArray = [];
+    createCheckArray();
+
+    function createCheckArray() {
+        fetch(`sound.json`)
+        .then(Response => Response.json())
+        .then(data => {
+            checkArray = new Array(data.sounds.length).fill(false);
+        });
+    }
+
     function getSoundData() {
         fetch(`sound.json`)
         .then(Response => Response.json())
         .then(data => {
-            const indexSound = Math.floor(Math.random() * data.sounds.length);
 
-            document.getElementById("outputSound").innerText = `Předveď zvuk: ${data.sounds[indexSound]}`;
+            let going = true;
+            let indexSound = 0;
+
+            if (checkArray.every(element => element == true)) {
+                checkArray = new Array(data.sounds.length).fill(false);
+            }
+
+            while (going) {
+                indexSound = Math.floor(Math.random() * data.sounds.length);
+                if (checkArray[indexSound] == false) {
+                    checkArray[indexSound] = true;
+                    going = false;
+                    break;
+                }
+            }
+
+            document.getElementById("outputSound").innerText = `${data.sounds[indexSound]}`;
+            console.log(checkArray);
         });
     }
 
@@ -209,7 +261,6 @@ else if (pageName == "[[MISTRI ZVUKU]]") {
     function win() {
         winScreen.style.opacity = "1";
         winScreen.style.zIndex = "100";
-        timerStop();
     }
     function newRound() {
         winScreen.style.opacity = "0";
