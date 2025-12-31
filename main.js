@@ -1,6 +1,8 @@
 const pageName = document.title
 console.log(pageName);
 
+const main = document.getElementsByClassName("main")[0];
+
 if (pageName == "[[TAXI]]") {
     
     function getTaxiData() {
@@ -20,7 +22,7 @@ if (pageName == "[[TAXI]]") {
     getTaxiData();
 
     let timer = 0;
-    let maxTime = 90;
+    let maxTime = 120;
     const outputTimer = document.getElementById("outputTimer");
     outputTimer.innerText = `zbývá: ${maxTime - timer}s`;
 
@@ -64,6 +66,10 @@ if (pageName == "[[TAXI]]") {
             maxTime = newMaxTime; 
         }
         getTaxiData();
+        timer = 0;
+        outputTimer.innerText = `zbývá: ${maxTime - timer}s`;
+        timerStop();
+        timerBegin();
         maxTimeInput.placeholder = `${maxTime}s`;
     }
 
@@ -133,6 +139,7 @@ if (pageName == "[[TAXI]]") {
         winScreen.style.zIndex = "-100";
         timer = 0;
         getTaxiData();
+        timerBegin();
     }
     function lose() {
         winScreen.style.opacity = "1";
@@ -150,6 +157,82 @@ if (pageName == "[[TAXI]]") {
                 timerStop();
             }*/
             getTaxiData();
+            const buttonDalsi = document.getElementById("buttonDalsi");
+            buttonDalsi.style.backgroundColor = "rgba(255, 255, 255, 0.2)";
+            buttonDalsi.style.boxShadow = "0 0 5px rgb(255, 255, 255)";
+            buttonDalsi.style.textShadow = "0 0 0";
+            buttonDalsi.style.borderRadius = "0px";
+        } 
+    });
+    document.addEventListener('keyup', (event) => {
+        if (event.code === 'Space') {
+            const buttonDalsi = document.getElementById("buttonDalsi");
+            buttonDalsi.style.backgroundColor = "rgba(255, 255, 255, 0)";
+            buttonDalsi.style.boxShadow = "0 0 5px rgba(255, 255, 255, 0.3)";
+            buttonDalsi.style.borderRadius = "4px";
+            buttonDalsi.style.textShadow = "0 0 5px rgb(255, 255, 255), 0 0 7px rgb(255, 255, 255)";
+        }
+    });
+}
+
+
+
+else if (pageName == "[[MISTRI ZVUKU]]") {
+
+    main.style.height = "60vh";
+    let checkArray = [];
+    createCheckArray();
+
+    function createCheckArray() {
+        fetch(`sound.json`)
+        .then(Response => Response.json())
+        .then(data => {
+            checkArray = new Array(data.sounds.length).fill(false);
+        });
+    }
+
+    function getSoundData() {
+        fetch(`sound.json`)
+        .then(Response => Response.json())
+        .then(data => {
+
+            let going = true;
+            let indexSound = 0;
+
+            if (checkArray.every(element => element == true)) {
+                checkArray = new Array(data.sounds.length).fill(false);
+            }
+
+            while (going) {
+                indexSound = Math.floor(Math.random() * data.sounds.length);
+                if (checkArray[indexSound] == false) {
+                    checkArray[indexSound] = true;
+                    going = false;
+                    break;
+                }
+            }
+
+            document.getElementById("outputSound").innerText = `${data.sounds[indexSound]}`;
+            console.log(checkArray);
+        });
+    }
+
+    getSoundData();
+
+    const winScreen = document.getElementById("winScreen");
+    function win() {
+        winScreen.style.opacity = "1";
+        winScreen.style.zIndex = "100";
+    }
+    function newRound() {
+        winScreen.style.opacity = "0";
+        winScreen.style.zIndex = "-100";
+        getSoundData();
+    }
+
+    document.addEventListener('keydown', (event) => {
+        if (event.code === 'Space') {
+            getSoundData();
         }
     });
 }
@@ -212,65 +295,6 @@ else if (pageName == "[[POZNEJ PISEN]]") {
     document.addEventListener('keydown', (event) => {
         if (event.code === 'Space') {
             getSongData();
-        }
-    });
-}
-
-else if (pageName == "[[MISTRI ZVUKU]]") {
-
-    let checkArray = [];
-    createCheckArray();
-
-    function createCheckArray() {
-        fetch(`sound.json`)
-        .then(Response => Response.json())
-        .then(data => {
-            checkArray = new Array(data.sounds.length).fill(false);
-        });
-    }
-
-    function getSoundData() {
-        fetch(`sound.json`)
-        .then(Response => Response.json())
-        .then(data => {
-
-            let going = true;
-            let indexSound = 0;
-
-            if (checkArray.every(element => element == true)) {
-                checkArray = new Array(data.sounds.length).fill(false);
-            }
-
-            while (going) {
-                indexSound = Math.floor(Math.random() * data.sounds.length);
-                if (checkArray[indexSound] == false) {
-                    checkArray[indexSound] = true;
-                    going = false;
-                    break;
-                }
-            }
-
-            document.getElementById("outputSound").innerText = `${data.sounds[indexSound]}`;
-            console.log(checkArray);
-        });
-    }
-
-    getSoundData();
-
-    const winScreen = document.getElementById("winScreen");
-    function win() {
-        winScreen.style.opacity = "1";
-        winScreen.style.zIndex = "100";
-    }
-    function newRound() {
-        winScreen.style.opacity = "0";
-        winScreen.style.zIndex = "-100";
-        getSoundData();
-    }
-
-    document.addEventListener('keydown', (event) => {
-        if (event.code === 'Space') {
-            getSoundData();
         }
     });
 }

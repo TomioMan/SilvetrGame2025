@@ -134,6 +134,29 @@ nav {
             color: rgb(255, 255, 255);
         }
     }
+    .buttons{
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        button{
+            font-size: large;
+            width: 100px;
+            height: 40px;
+            text-shadow: 0 0 5px rgb(255, 255, 255), 0 0 7px rgb(255, 255, 255);
+            color: rgb(255, 255, 255);
+            background-color: rgba(255, 255, 255, 0);
+            border: 2px solid white;
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+            transition: 100ms;
+            &:hover{
+                background-color: rgba(255, 255, 255, 0.2);
+                box-shadow: 0 0 5px rgb(255, 255, 255);
+                text-shadow: 0 0 0;
+                border-radius: 0px;
+            }
+        }
+    }
 }
 .winScreen{
     position: fixed;

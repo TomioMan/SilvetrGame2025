@@ -29,7 +29,7 @@
         </div>
         <div>
             <h1>Čas na jedno kolo</h1>
-            <input type="number" max="180" min="10" placeholder="90s" id="maxTimeInput">
+            <input type="number" max="180" min="10" placeholder="120s" id="maxTimeInput">
             <button onclick="maxTimeChange()">save</button>
         </div>
         <div>
@@ -54,8 +54,10 @@
     <div class="main">
         <p>Osoba: <br><span id="outputPerson"></span></p>
         <p>Jede do: <br><span id="outputLocation"></span></p>
-        <button onclick="getTaxiData()">Další</button>
-        <button onclick="win()">Uhodnuto</button>
+        <div class="buttons">
+            <button onclick="getTaxiData()" id="buttonDalsi">Další</button>
+            <button onclick="win()">Uhodnuto</button>
+        </div>
         <p id="outputTimer">zbývá: 0s</p>
     </div>
 
